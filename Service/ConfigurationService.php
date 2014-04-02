@@ -12,6 +12,7 @@ use Symfony\Component\Config\Definition\BooleanNode;
 use Symfony\Component\Config\Definition\IntegerNode;
 use Symfony\Component\Config\Definition\FloatNode;
 use Monolog\Logger;
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 
 /** ConfigurationService
  *
@@ -55,25 +56,27 @@ class ConfigurationService
      /**
      * Get configuration value either from database or bundle config
      *
-     * @param string $bundleName the bundle name that defines the default configuration
-     * @param string $extension  the extension name
-     * @param string $namespace  the namespace linked to the extension
-     * @param string $key        the configuration key
+     * @param string $configurationClass the configuration class
+     * @param string $namespace          the namespace linked to the extension
+     * @param string $key                the configuration key
      *
      * @throws \InvalidArgumentException when the configuration key is not found
      * @return mixed string|boolean the configuration value or false if it doesn't exists
      */
-    public function getConfigurationValue($bundleName, $extension, $namespace, $key)
+    public function getConfigurationValue($configurationClass, $namespace, $key)
     {
         $value = '';
         $path = explode('.', $key);
-        $node = $this->getDefaultConfigurationNode($bundleName, $path);
+        $tree = $this->getContainerConfigurationTree($configurationClass);
+
+        $treeName = $tree->getName();
+        $node = $this->getConfigurationFromTree($tree, $path);
 
         if ($node === null) {
             throw new \InvalidArgumentException('Configuration key not found: ' . $key);
         }
 
-        if (null !== $value = $this->getConfigurationFromDatabase($extension, $namespace, $path)) {
+        if (null !== $value = $this->getConfigurationFromDatabase($treeName, $namespace, $path)) {
             if ($node instanceof BooleanNode) {
                 $value = (boolean) $value;
             } elseif ($node instanceof IntegerNode) {
@@ -120,16 +123,13 @@ class ConfigurationService
     /**
      * Get configuration value from default bundle configuration
      *
-     * @param string $bundleName the bundle name that defines the configuration
-     * @param string $path       the path of the configuration key
+     * @param ArrayNodeDefinition $tree the configuration tree
+     * @param string              $path the path of the configuration key
      *
      * @return string|null
      */
-    protected function getDefaultConfigurationNode($bundleName, $path)
+    protected function getConfigurationFromTree(ArrayNode $tree, $path)
     {
-
-        $tree = $this->getContainerConfigurationTree($this->kernel->getBundle($bundleName));
-
         foreach ($path as $pathElement) {
             foreach ($tree->getChildren() as $node) {
                 if ($node->getName() == $pathElement) {
@@ -147,22 +147,23 @@ class ConfigurationService
     /**
      * Return the configuration tree of a bundle or false if not defined
      *
-     * @param BundleInterface $bundle a bundle
+     * @param string $configurationClass the configuration class
      *
      * @return mixed boolean|array
      */
-    public function getContainerConfigurationTree(BundleInterface $bundle)
+    public function getContainerConfigurationTree($configurationClass)
     {
-        $extension = $bundle->getContainerExtension();
+        if (class_exists($configurationClass)) {
+            $r = new \ReflectionClass($configurationClass);
 
-        if ($extension) {
-            $configuration = $extension->getConfiguration(array(), new ContainerBuilder());
-            if ($configuration) {
+            if (!method_exists($configurationClass, '__construct')) {
+                $configuration = new $configurationClass();
+
                 return $configuration->getConfigTreeBuilder()->buildTree();
             }
         }
 
-        return false;
+        return null;
     }
 
 }

@@ -26,21 +26,20 @@ class ConfiguratorController extends Controller
     /**
      * Display a form to edit the configuration of a bundle
      *
-     * @param Request $request    the request
-     * @param string  $bundleName the bundle name to be configured
-     * @param string  $namespace  the namespace of the extension
+     * @param Request $request            the request
+     * @param string  $configurationClass the bundle name to be configured
+     * @param string  $namespace          the namespace of the extension
      *
      * @return Response
      */
-    public function editAction(Request $request, $bundleName, $namespace)
+    public function editAction(Request $request, $configurationClass, $namespace = '')
     {
         $extensionRepository = $this->getDoctrine()->getRepository('UnifikDatabaseConfigBundle:Extension');
         $configRepository = $this->getDoctrine()->getRepository('UnifikDatabaseConfigBundle:Config');
 
         $manager = $this->getDoctrine()->getManager();
-        $bundles = $this->get('kernel')->getBundles();
 
-        $tree = $this->get('unifik_database_config.services.configuration')->getContainerConfigurationTree($bundles[$bundleName]);
+        $tree = $this->get('unifik_database_config.services.configuration')->getContainerConfigurationTree($configurationClass);
         $extension = $extensionRepository->findOneBy(
             array(
                 'name' => $tree->getName(),
