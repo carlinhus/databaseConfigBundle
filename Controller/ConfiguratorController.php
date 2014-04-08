@@ -61,6 +61,8 @@ class ConfiguratorController extends Controller
 
             if ($form->isValid()) {
 
+                $this->get('logger')->info('Updating configuration. - ' . (string) $extension);
+
                 // removing the previous config entries from the database
                 $configRepository->deleteByExtension($extension->getId());
 

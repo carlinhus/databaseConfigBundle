@@ -174,6 +174,7 @@ class Extension
      * Get a config by its name
      *
      * @param string $configName the config name
+     *
      * @return Ambigous <\Doctrine\Common\Collections\ArrayCollection, unknown>|NULL
      */
     public function get($configName)
@@ -184,6 +185,21 @@ class Extension
             }
         }
         return null;
+    }
+
+    /**
+     * An extension to string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        $string = $this->name . '(' . $this->namespace . ') [';
+        foreach ($this->getRootConfigs() as $config) {
+            $string .= print_r($config->getConfigTree(), true);
+        }
+        $string .= ']';
+        return $string;
     }
 
 }
