@@ -139,7 +139,6 @@ class ConfiguratorType extends AbstractType
         // default value (using get instead of has to automatically filter empty strings)
         if ($node->getDefaultValue()) {
             $infos .= 'default value: ' . $node->getDefaultValue();
-            $options['data'] = $node->getDefaultValue();
         }
 
         $options['attr']['alt'] = $infos;
