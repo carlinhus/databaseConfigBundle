@@ -1,5 +1,5 @@
 {
-    "name": "naoned/database-config-bundle",
+    "name": "naoned/databaseConfigBundle",
     "type": "symfony-bundle",
     "description": "Allows management of Symfony's container configuration from the database",
     "keywords": ["naoned", "symfony", "database", "container", "config"],
