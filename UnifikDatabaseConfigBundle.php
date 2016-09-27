@@ -1,9 +1,9 @@
 <?php
 
-namespace Unifik\DatabaseConfigBundle;
+namespace Naoned\DatabaseConfigBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class UnifikDatabaseConfigBundle extends Bundle
+class NaonedDatabaseConfigBundle extends Bundle
 {
 }

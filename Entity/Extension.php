@@ -1,6 +1,6 @@
 <?php
 
-namespace Unifik\DatabaseConfigBundle\Entity;
+namespace Naoned\DatabaseConfigBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Config
  * @ORM\Table(name="container_extension")
- * @ORM\Entity(repositoryClass="Unifik\DatabaseConfigBundle\Entity\ExtensionRepository")
+ * @ORM\Entity(repositoryClass="Naoned\DatabaseConfigBundle\Entity\ExtensionRepository")
  */
 class Extension
 {
@@ -25,7 +25,7 @@ class Extension
     private $name;
 
    /**
-     * @ORM\OneToMany(targetEntity="Unifik\DatabaseConfigBundle\Entity\Config", mappedBy="extension", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Naoned\DatabaseConfigBundle\Entity\Config", mappedBy="extension", cascade={"persist", "remove"}, orphanRemoval=true)
      */
     private $configs;
 
@@ -37,11 +37,11 @@ class Extension
     {
         $this->configs = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -57,14 +57,14 @@ class Extension
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -74,24 +74,24 @@ class Extension
     /**
      * Add configs
      *
-     * @param \Unifik\DatabaseConfigBundle\Entity\Config $config
+     * @param \Naoned\DatabaseConfigBundle\Entity\Config $config
      * @return Extension
      */
-    public function addConfig(\Unifik\DatabaseConfigBundle\Entity\Config $config)
+    public function addConfig(\Naoned\DatabaseConfigBundle\Entity\Config $config)
     {
         $config->setExtension($this);
 
         $this->configs[] = $config;
-    
+
         return $this;
     }
 
     /**
      * Remove configs
      *
-     * @param \Unifik\DatabaseConfigBundle\Entity\Config $configs
+     * @param \Naoned\DatabaseConfigBundle\Entity\Config $configs
      */
-    public function removeConfig(\Unifik\DatabaseConfigBundle\Entity\Config $configs)
+    public function removeConfig(\Naoned\DatabaseConfigBundle\Entity\Config $configs)
     {
         $this->configs->removeElement($configs);
     }
@@ -99,7 +99,7 @@ class Extension
     /**
      * Get configs
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getConfigs()
     {

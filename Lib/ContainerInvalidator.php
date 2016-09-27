@@ -1,6 +1,6 @@
 <?php
 
-namespace Unifik\DatabaseConfigBundle\Lib;
+namespace Naoned\DatabaseConfigBundle\Lib;
 
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Finder\Finder;

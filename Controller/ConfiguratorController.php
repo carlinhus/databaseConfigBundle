@@ -1,6 +1,6 @@
 <?php
 
-namespace Unifik\DatabaseConfigBundle\Controller;
+namespace Naoned\DatabaseConfigBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Config\Definition\ArrayNode;
@@ -10,8 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 
-use Unifik\DatabaseConfigBundle\Entity\Extension;
-use Unifik\DatabaseConfigBundle\Form\ConfiguratorType;
+use Naoned\DatabaseConfigBundle\Entity\Extension;
+use Naoned\DatabaseConfigBundle\Form\ConfiguratorType;
 
 /**
  * Locale Controller
@@ -24,7 +24,7 @@ class ConfiguratorController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('UnifikDatabaseConfigBundle::index.html.twig', array(
+        return $this->render('NaonedDatabaseConfigBundle::index.html.twig', array(
             'bundles' => $this->getConfiguratorEnabledBundles()
         ));
     }
@@ -39,8 +39,8 @@ class ConfiguratorController extends Controller
      */
     public function editAction(Request $request, $bundleName)
     {
-        $extensionRepository = $this->getDoctrine()->getRepository('UnifikDatabaseConfigBundle:Extension');
-        $configRepository = $this->getDoctrine()->getRepository('UnifikDatabaseConfigBundle:Config');
+        $extensionRepository = $this->getDoctrine()->getRepository('NaonedDatabaseConfigBundle:Extension');
+        $configRepository = $this->getDoctrine()->getRepository('NaonedDatabaseConfigBundle:Config');
 
         $manager = $this->getDoctrine()->getManager();
         $bundles = $this->get('kernel')->getBundles();
@@ -67,11 +67,11 @@ class ConfiguratorController extends Controller
                 $manager->persist($extension);
                 $manager->flush($extension);
 
-                $this->get('unifik_database_config.container_invalidator')->invalidate();
+                $this->get('naoned_database_config.container_invalidator')->invalidate();
             }
         }
 
-        return $this->render('UnifikDatabaseConfigBundle::edit.html.twig', array(
+        return $this->render('NaonedDatabaseConfigBundle::edit.html.twig', array(
             'form' => $form->createView(),
             'bundles' => $this->getConfiguratorEnabledBundles()
         ));

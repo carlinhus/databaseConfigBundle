@@ -1,10 +1,10 @@
 # Configurator
-unifik_configurator:
+naoned_configurator:
     pattern:  /configurator
-    defaults: { _controller: "UnifikDatabaseConfigBundle:Configurator:index" }
+    defaults: { _controller: "NaonedDatabaseConfigBundle:Configurator:index" }
     options: { do_not_remove: true }
 
-unifik_configurator_edit:
+naoned_configurator_edit:
     pattern:  /configurator/{bundleName}
-    defaults: { _controller: "UnifikDatabaseConfigBundle:Configurator:edit" }
+    defaults: { _controller: "NaonedDatabaseConfigBundle:Configurator:edit" }
     options: { do_not_remove: true }

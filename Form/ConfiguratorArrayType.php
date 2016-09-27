@@ -1,6 +1,6 @@
 <?php
 
-namespace Unifik\DatabaseConfigBundle\Form;
+namespace Naoned\DatabaseConfigBundle\Form;
 
 use Symfony\Component\Form\FormBuilderInterface;
 

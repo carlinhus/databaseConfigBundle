@@ -17,6 +17,10 @@
         {
             "name": "Frédéric Hamelin",
             "email": "fredhamelin91@gmail.com"
+        },
+        {
+            "name": "Vincent Beauvivre",
+            "email": "vbeauvivre@naoned.fr"
         }
     ],
     "require": {

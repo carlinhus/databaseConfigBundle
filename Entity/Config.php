@@ -1,13 +1,13 @@
 <?php
 
-namespace Unifik\DatabaseConfigBundle\Entity;
+namespace Naoned\DatabaseConfigBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * 
+ *
  * @ORM\Table(name="container_config")
- * @ORM\Entity(repositoryClass="Unifik\DatabaseConfigBundle\Entity\ConfigRepository")
+ * @ORM\Entity(repositoryClass="Naoned\DatabaseConfigBundle\Entity\ConfigRepository")
  */
 class Config {
 
@@ -30,20 +30,20 @@ class Config {
 
     /**
      * Bidirectional - One-To-Many (INVERSE SIDE)
-     * @ORM\OneToMany(targetEntity="Unifik\DatabaseConfigBundle\Entity\Config", mappedBy="parent", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="Naoned\DatabaseConfigBundle\Entity\Config", mappedBy="parent", cascade={"remove"})
      */
     private $children;
 
     /**
-     * 
-     * @ORM\ManyToOne(targetEntity="Unifik\DatabaseConfigBundle\Entity\Config", inversedBy="children")
+     *
+     * @ORM\ManyToOne(targetEntity="Naoned\DatabaseConfigBundle\Entity\Config", inversedBy="children")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $parent;
 
     /**
-     * 
-     * @ORM\ManyToOne(targetEntity="Unifik\DatabaseConfigBundle\Entity\Extension", inversedBy="configs")
+     *
+     * @ORM\ManyToOne(targetEntity="Naoned\DatabaseConfigBundle\Entity\Extension", inversedBy="configs")
      * @ORM\JoinColumn(name="extension_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $extension;
@@ -58,7 +58,7 @@ class Config {
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId() {
         return $this->id;
@@ -79,7 +79,7 @@ class Config {
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName() {
         return $this->name;
@@ -100,7 +100,7 @@ class Config {
     /**
      * Get value
      *
-     * @return string 
+     * @return string
      */
     public function getValue() {
         return $this->value;
@@ -109,10 +109,10 @@ class Config {
     /**
      * Add children
      *
-     * @param \Unifik\DatabaseConfigBundle\Entity\Config $children
+     * @param \Naoned\DatabaseConfigBundle\Entity\Config $children
      * @return Config
      */
-    public function addChildren(\Unifik\DatabaseConfigBundle\Entity\Config $children) {
+    public function addChildren(\Naoned\DatabaseConfigBundle\Entity\Config $children) {
         $this->children[] = $children;
 
         return $this;
@@ -121,16 +121,16 @@ class Config {
     /**
      * Remove children
      *
-     * @param \Unifik\DatabaseConfigBundle\Entity\Config $children
+     * @param \Naoned\DatabaseConfigBundle\Entity\Config $children
      */
-    public function removeChildren(\Unifik\DatabaseConfigBundle\Entity\Config $children) {
+    public function removeChildren(\Naoned\DatabaseConfigBundle\Entity\Config $children) {
         $this->children->removeElement($children);
     }
 
     /**
      * Get children
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getChildren() {
         return $this->children;
@@ -139,10 +139,10 @@ class Config {
     /**
      * Set parent
      *
-     * @param \Unifik\DatabaseConfigBundle\Entity\Config $parent
+     * @param \Naoned\DatabaseConfigBundle\Entity\Config $parent
      * @return Config
      */
-    public function setParent(\Unifik\DatabaseConfigBundle\Entity\Config $parent = null) {
+    public function setParent(\Naoned\DatabaseConfigBundle\Entity\Config $parent = null) {
         $this->parent = $parent;
 
         return $this;
@@ -151,7 +151,7 @@ class Config {
     /**
      * Get parent
      *
-     * @return \Unifik\DatabaseConfigBundle\Entity\Config
+     * @return \Naoned\DatabaseConfigBundle\Entity\Config
      */
     public function getParent() {
         return $this->parent;
@@ -160,10 +160,10 @@ class Config {
     /**
      * Set extension
      *
-     * @param \Unifik\DatabaseConfigBundle\Entity\Extension $extension
+     * @param \Naoned\DatabaseConfigBundle\Entity\Extension $extension
      * @return Config
      */
-    public function setExtension(\Unifik\DatabaseConfigBundle\Entity\Extension $extension = null) {
+    public function setExtension(\Naoned\DatabaseConfigBundle\Entity\Extension $extension = null) {
         $this->extension = $extension;
 
         return $this;
@@ -172,7 +172,7 @@ class Config {
     /**
      * Get extension
      *
-     * @return \Unifik\DatabaseConfigBundle\Entity\Extension
+     * @return \Naoned\DatabaseConfigBundle\Entity\Extension
      */
     public function getExtension() {
         return $this->extension;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Unifik\DatabaseConfigBundle\DependencyInjection\Compiler;
+namespace Naoned\DatabaseConfigBundle\DependencyInjection\Compiler;
 
 use Doctrine\Bundle\DoctrineBundle\ConnectionFactory;
 use Doctrine\DBAL\Connection;
@@ -9,8 +9,8 @@ use Doctrine\DBAL\Query\QueryBuilder;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Bridge\ProxyManager\LazyProxy\Instantiator\RuntimeInstantiator;
 
-use Unifik\DatabaseConfigBundle\Entity\Config;
-use Unifik\DatabaseConfigBundle\Entity\Extension;
+use Naoned\DatabaseConfigBundle\Entity\Config;
+use Naoned\DatabaseConfigBundle\Entity\Extension;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder as BaseContainerBuilder;
 

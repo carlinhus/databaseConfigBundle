@@ -1,7 +1,7 @@
 parameters:
-    unifik_database_config.container_invalidator.class: Unifik\DatabaseConfigBundle\Lib\ContainerInvalidator
+    naoned_database_config.container_invalidator.class: Naoned\DatabaseConfigBundle\Lib\ContainerInvalidator
 
 services:
-    unifik_database_config.container_invalidator:
-        class: %unifik_database_config.container_invalidator.class%
+    naoned_database_config.container_invalidator:
+        class: %naoned_database_config.container_invalidator.class%
         arguments: [ '@kernel' ]
