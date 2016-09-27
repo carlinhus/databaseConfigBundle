@@ -27,7 +27,7 @@
         "symfony/symfony": "~2.1 | ^3.0"
     },
     "autoload": {
-        "psr-0": { "Naoned\\DatabaseConfigBundle": "" }
+        "psr-0": { "Naoned\\DatabaseConfigBundle\\": "" }
     },
     "target-dir": "Naoned/DatabaseConfigBundle"
 }
