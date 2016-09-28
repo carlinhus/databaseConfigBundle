@@ -38,9 +38,9 @@ class ConfiguratorController extends Controller
         $configRepository = $this->getDoctrine()->getRepository('NaonedDatabaseConfigBundle:Config');
 
         $manager = $this->getDoctrine()->getManager();
+        $bundles = $this->get('kernel')->getBundles();
 
-        $configurationClass = $bundleName.'\DependencyInjection\Configuration';
-        $tree = $this->get('naoned_database_config.services.configuration')->getContainerConfigurationTree($configurationClass);
+        $tree = $this->get('naoned_database_config.services.configuration')->getContainerConfigurationTree($bundles[$bundleName]);
         $extension = $extensionRepository->findOneBy(
             array(
                 'name' => $tree->getName(),

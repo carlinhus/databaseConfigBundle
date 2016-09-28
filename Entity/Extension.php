@@ -6,7 +6,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Config
+ * Extension entity
+ *
  * @ORM\Table(name="container_extension")
  * @ORM\Entity(repositoryClass="Naoned\DatabaseConfigBundle\Entity\ExtensionRepository")
  */

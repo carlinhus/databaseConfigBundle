@@ -9,9 +9,12 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="container_config")
  * @ORM\Entity(repositoryClass="Naoned\DatabaseConfigBundle\Entity\ConfigRepository")
  */
-class Config {
+class Config
+{
 
     /**
+     * @var integer
+     *
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -19,22 +22,29 @@ class Config {
     private $id;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $name;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $value;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
      * Bidirectional - One-To-Many (INVERSE SIDE)
      * @ORM\OneToMany(targetEntity="Naoned\DatabaseConfigBundle\Entity\Config", mappedBy="parent", cascade={"remove"})
      */
     private $children;
 
     /**
+     * @var \Naoned\DatabaseConfigBundle\Entity\Config
      *
      * @ORM\ManyToOne(targetEntity="Naoned\DatabaseConfigBundle\Entity\Config", inversedBy="children")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="CASCADE")
@@ -42,6 +52,7 @@ class Config {
     private $parent;
 
     /**
+     * @var \Naoned\DatabaseConfigBundle\Entity\Extension
      *
      * @ORM\ManyToOne(targetEntity="Naoned\DatabaseConfigBundle\Entity\Extension", inversedBy="configs")
      * @ORM\JoinColumn(name="extension_id", referencedColumnName="id", onDelete="CASCADE")
@@ -51,7 +62,8 @@ class Config {
     /**
      * Constructor
      */
-    public function __construct() {
+    public function __construct()
+    {
         $this->children = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -60,7 +72,8 @@ class Config {
      *
      * @return integer
      */
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
@@ -70,7 +83,8 @@ class Config {
      * @param string $name the config item name
      * @return Config
      */
-    public function setName($name) {
+    public function setName($name)
+    {
         $this->name = $name;
 
         return $this;
@@ -81,7 +95,8 @@ class Config {
      *
      * @return string
      */
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
@@ -91,7 +106,8 @@ class Config {
      * @param string $value the config item value
      * @return Config
      */
-    public function setValue($value) {
+    public function setValue($value)
+    {
         $this->value = $value;
 
         return $this;
@@ -102,7 +118,8 @@ class Config {
      *
      * @return string
      */
-    public function getValue() {
+    public function getValue()
+    {
         return $this->value;
     }
 
@@ -112,7 +129,8 @@ class Config {
      * @param \Naoned\DatabaseConfigBundle\Entity\Config $children the child to add
      * @return Config
      */
-    public function addChildren(\Naoned\DatabaseConfigBundle\Entity\Config $children) {
+    public function addChildren(\Naoned\DatabaseConfigBundle\Entity\Config $children)
+    {
         $this->children[] = $children;
 
         return $this;
@@ -122,8 +140,11 @@ class Config {
      * Remove children
      *
      * @param \Naoned\DatabaseConfigBundle\Entity\Config $children the child to remove
+     *
+     * @return void
      */
-    public function removeChildren(\Naoned\DatabaseConfigBundle\Entity\Config $children) {
+    public function removeChildren(\Naoned\DatabaseConfigBundle\Entity\Config $children)
+    {
         $this->children->removeElement($children);
     }
 
@@ -132,7 +153,8 @@ class Config {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getChildren() {
+    public function getChildren()
+    {
         return $this->children;
     }
 
@@ -142,7 +164,8 @@ class Config {
      * @param \Naoned\DatabaseConfigBundle\Entity\Config $parent the parent to set
      * @return Config
      */
-    public function setParent(\Naoned\DatabaseConfigBundle\Entity\Config $parent = null) {
+    public function setParent(\Naoned\DatabaseConfigBundle\Entity\Config $parent = null)
+    {
         $this->parent = $parent;
 
         return $this;
@@ -153,7 +176,8 @@ class Config {
      *
      * @return \Naoned\DatabaseConfigBundle\Entity\Config
      */
-    public function getParent() {
+    public function getParent()
+    {
         return $this->parent;
     }
 
@@ -163,7 +187,8 @@ class Config {
      * @param \Naoned\DatabaseConfigBundle\Entity\Extension $extension the extension to set
      * @return Config
      */
-    public function setExtension(\Naoned\DatabaseConfigBundle\Entity\Extension $extension = null) {
+    public function setExtension(\Naoned\DatabaseConfigBundle\Entity\Extension $extension = null)
+    {
         $this->extension = $extension;
 
         return $this;
@@ -174,7 +199,8 @@ class Config {
      *
      * @return \Naoned\DatabaseConfigBundle\Entity\Extension
      */
-    public function getExtension() {
+    public function getExtension()
+    {
         return $this->extension;
     }
 
@@ -183,7 +209,8 @@ class Config {
      *
      * @return multitype:array |string
      */
-    public function getConfigTree() {
+    public function getConfigTree()
+    {
         if (count($this->children) > 0) {
             $configArray = array();
             foreach ($this->children as $child) {
