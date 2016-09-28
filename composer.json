@@ -3,7 +3,7 @@
     "type": "symfony-bundle",
     "description": "Allows management of Symfony's container configuration from the database",
     "keywords": ["naoned", "symfony", "database", "container", "config"],
-    "homepage": "https://github.com/egzakt/NaonedDatabaseConfigBundle",
+    "homepage": "https://github.com/naoned/databaseConfigBundle",
     "license": "MIT",
     "authors": [
         {
@@ -17,6 +17,10 @@
         {
             "name": "Frédéric Hamelin",
             "email": "fredhamelin91@gmail.com"
+        },
+        {
+            "name": "Guillaume Petit",
+            "email": "guillaume.petit@sword-group.com"
         },
         {
             "name": "Vincent Beauvivre",

@@ -1,7 +1,11 @@
-parameters:
-    naoned_database_config.container_invalidator.class: Naoned\DatabaseConfigBundle\Lib\ContainerInvalidator
-
 services:
-    naoned_database_config.container_invalidator:
-        class: %naoned_database_config.container_invalidator.class%
-        arguments: [ '@kernel' ]
+    naoned_database_config.repositories.extension:
+        class: Doctrine\ORM\EntityRepository
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments:
+            - Naoned\DatabaseConfigBundle\Entity\Extension
+
+    naoned_database_config.services.configuration:
+        class: Naoned\DatabaseConfigBundle\Service\ConfigurationService
+        arguments: [ "@kernel", "@naoned_database_config.repositories.extension", "@logger" ]

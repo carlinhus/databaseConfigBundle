@@ -67,7 +67,7 @@ class Config {
     /**
      * Set name
      *
-     * @param string $name
+     * @param string $name the config item name
      * @return Config
      */
     public function setName($name) {
@@ -88,7 +88,7 @@ class Config {
     /**
      * Set value
      *
-     * @param string $value
+     * @param string $value the config item value
      * @return Config
      */
     public function setValue($value) {
@@ -109,7 +109,7 @@ class Config {
     /**
      * Add children
      *
-     * @param \Naoned\DatabaseConfigBundle\Entity\Config $children
+     * @param \Naoned\DatabaseConfigBundle\Entity\Config $children the child to add
      * @return Config
      */
     public function addChildren(\Naoned\DatabaseConfigBundle\Entity\Config $children) {
@@ -121,7 +121,7 @@ class Config {
     /**
      * Remove children
      *
-     * @param \Naoned\DatabaseConfigBundle\Entity\Config $children
+     * @param \Naoned\DatabaseConfigBundle\Entity\Config $children the child to remove
      */
     public function removeChildren(\Naoned\DatabaseConfigBundle\Entity\Config $children) {
         $this->children->removeElement($children);
@@ -139,7 +139,7 @@ class Config {
     /**
      * Set parent
      *
-     * @param \Naoned\DatabaseConfigBundle\Entity\Config $parent
+     * @param \Naoned\DatabaseConfigBundle\Entity\Config $parent the parent to set
      * @return Config
      */
     public function setParent(\Naoned\DatabaseConfigBundle\Entity\Config $parent = null) {
@@ -160,7 +160,7 @@ class Config {
     /**
      * Set extension
      *
-     * @param \Naoned\DatabaseConfigBundle\Entity\Extension $extension
+     * @param \Naoned\DatabaseConfigBundle\Entity\Extension $extension the extension to set
      * @return Config
      */
     public function setExtension(\Naoned\DatabaseConfigBundle\Entity\Extension $extension = null) {
@@ -178,6 +178,11 @@ class Config {
         return $this->extension;
     }
 
+    /**
+     * Return the configuration tree (associative array)
+     *
+     * @return multitype:array |string
+     */
     public function getConfigTree() {
         if (count($this->children) > 0) {
             $configArray = array();
@@ -195,4 +200,24 @@ class Config {
         return $this->value;
     }
 
+    /**
+     * Get config child by name
+     *
+     * @param string $configName the config name
+     *
+     * @return Config|NULL
+     */
+    public function get($configName)
+    {
+        foreach ($this->getChildren() as $config) {
+            if ($config->getName() == $configName) {
+                if ($config->getValue() != '') {
+                    return $config->getValue();
+                } else {
+                    return $config;
+                }
+            }
+        }
+        return null;
+    }
 }

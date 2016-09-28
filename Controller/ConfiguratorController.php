@@ -14,43 +14,44 @@ use Naoned\DatabaseConfigBundle\Entity\Extension;
 use Naoned\DatabaseConfigBundle\Form\ConfiguratorType;
 
 /**
- * Locale Controller
+ * Configurator Controller
+ *
+ * @package Naoned.DatabaseConfigBundle.Controller
+ *
+ * @author  Guillaume Petit <guillaume.petit@sword-group.com>
  */
 class ConfiguratorController extends Controller
 {
 
     /**
-     * @return Response
-     */
-    public function indexAction()
-    {
-        return $this->render('NaonedDatabaseConfigBundle::index.html.twig', array(
-            'bundles' => $this->getConfiguratorEnabledBundles()
-        ));
-    }
-
-    /**
      * Display a form to edit the configuration of a bundle
      *
-     * @param Request $request
-     * @param string $bundleName
+     * @param Request $request    the request
+     * @param string  $bundleName the bundle name to be configured
+     * @param string  $namespace  the namespace of the extension
      *
      * @return Response
      */
-    public function editAction(Request $request, $bundleName)
+    public function editAction(Request $request, $bundleName, $namespace = '')
     {
         $extensionRepository = $this->getDoctrine()->getRepository('NaonedDatabaseConfigBundle:Extension');
         $configRepository = $this->getDoctrine()->getRepository('NaonedDatabaseConfigBundle:Config');
 
         $manager = $this->getDoctrine()->getManager();
-        $bundles = $this->get('kernel')->getBundles();
 
-        $tree = $this->getConfigurationTree($bundles[$bundleName]);
-        $extension = $extensionRepository->findOneByName($tree->getName());
+        $configurationClass = $bundleName.'\DependencyInjection\Configuration';
+        $tree = $this->get('naoned_database_config.services.configuration')->getContainerConfigurationTree($configurationClass);
+        $extension = $extensionRepository->findOneBy(
+            array(
+                'name' => $tree->getName(),
+                'namespace' => $namespace,
+            )
+        );
 
         if (false == $extension) {
             $extension = new Extension();
             $extension->setName($tree->getName());
+            $extension->setNamespace($namespace);
         }
 
         $form = $this->createForm(new ConfiguratorType(), $extension, array('tree' => $tree));
@@ -61,72 +62,28 @@ class ConfiguratorController extends Controller
 
             if ($form->isValid()) {
 
+                $this->get('logger')->info('Updating configuration. - ' . (string) $extension);
+
                 // removing the previous config entries from the database
                 $configRepository->deleteByExtension($extension->getId());
 
                 $manager->persist($extension);
                 $manager->flush($extension);
-
-                $this->get('naoned_database_config.container_invalidator')->invalidate();
             }
         }
 
-        return $this->render('NaonedDatabaseConfigBundle::edit.html.twig', array(
-            'form' => $form->createView(),
-            'bundles' => $this->getConfiguratorEnabledBundles()
-        ));
-    }
-
-    /**
-     * Check each bundle currently loaded in the kernel and validate configurator support
-     *
-     * @return array
-     */
-    protected function getConfiguratorEnabledBundles()
-    {
-        $enabledBundles = array();
-        $bundles = $this->get('kernel')->getBundles();
-
-        foreach ($bundles as $name => $bundle) {
-            try {
-                if ($tree = $this->getConfigurationTree($bundle)) {
-                    if ($tree && $this->isConfiguratorEnabledNode($tree)) {
-                        $enabledBundles[] = $name;
-                    }
-                }
-            } catch (\Exception $e) {
-                // skip error'd bundle
-            }
-        }
-
-        return $enabledBundles;
-    }
-
-    /**
-     * Return the configuration tree of a bundle or false if not defined
-     *
-     * @param BundleInterface $bundle
-     *
-     * @return mixed
-     */
-    protected function getConfigurationTree(BundleInterface $bundle)
-    {
-        $extension = $bundle->getContainerExtension();
-
-        if ($extension) {
-            $configuration = $extension->getConfiguration(array(), new ContainerBuilder());
-            if ($configuration) {
-                return $configuration->getConfigTreeBuilder()->buildTree();
-            }
-        }
-
-        return false;
+        return $this->render(
+            'NaonedDatabaseConfigBundle::edit.html.twig',
+            array(
+                'form' => $form->createView(),
+            )
+        );
     }
 
     /**
      * Check if a tree node is configuration enabled
      *
-     * @param NodeInterface $arrayNode
+     * @param NodeInterface $arrayNode a node
      *
      * @return bool
      */
