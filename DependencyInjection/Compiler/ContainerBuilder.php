@@ -223,7 +223,12 @@ class ContainerBuilder extends BaseContainerBuilder
         $query = $this->databaseConnection->query($this->createParametersQuery());
 
         while (false !== $result = $query->fetchObject()) {
-            $this->setParameter($result->name, $result->value);
+            $value = $result->value;
+            // cast to bool if needed
+            if ($value === '0' || $value === '1' || !($value)) {
+                $value = (bool)$value;
+            }
+            $this->setParameter($result->name, $value);
         }
     }
 
