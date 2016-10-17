@@ -187,7 +187,10 @@ class ContainerBuilder extends BaseContainerBuilder
 
             // Loop through configs without parent to get their config trees
             foreach ($extension->getConfigs() as $config) {
-                $values[$config->getName()] = $config->getConfigTree();
+                // if no value defined, switch to default, to avoid defining an array to a string
+                if ($config->getConfigTree()) {
+                    $values[$config->getName()] = $config->getConfigTree();
+                }
             }
 
             // Adds the new config loaded from the database to the config of the extension

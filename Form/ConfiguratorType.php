@@ -16,6 +16,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Config\Definition\PrototypeNodeInterface;
 
 use Naoned\DatabaseConfigBundle\Form\DataTransformer\ArrayEntityTransformer;
 use Naoned\DatabaseConfigBundle\Form\DataTransformer\BooleanTransformer;
@@ -67,6 +68,10 @@ class ConfiguratorType extends AbstractType
     {
         $builder->addModelTransformer(new ArrayEntityTransformer());
 
+        if (!isset($options['tree'])) {
+            throw new \Exception("Cannot define configuration form without the config tree", 1);
+        }
+
         $this->processChildren($options['tree'], $builder);
     }
 
@@ -76,20 +81,36 @@ class ConfiguratorType extends AbstractType
      * @param ArrayNode             $arrayNode
      * @param FormBuilderInterface  $builder
      */
-    protected function processChildren(ArrayNode $arrayNode, FormBuilderInterface $builder)
+    protected static function processChildren(ArrayNode $arrayNode, FormBuilderInterface $builder)
     {
         foreach ($arrayNode->getChildren() as $node) {
-            if (false == $node->getAttribute('configurator')) {
-                // Nodes that are not explicitly configurable are skipped
-                continue;
-            } elseif ($node instanceof PrototypedArrayNode) {
+            if ($node instanceof PrototypedArrayNode) {
                 // PrototypedArrayNode are not currently supported
                 continue;
             } elseif ($node instanceof ArrayNode) {
-                $builder->add($node->getName(), new ConfiguratorArrayType(), array('tree' => $node));
+                if (self::anyExposedParameter($node)) {
+                    $builder->add($node->getName(), new ConfiguratorArrayType(), array('tree' => $node));
+                }
             } else {
-                $this->nodeToField($node, $builder);
+                if (false == $node->getAttribute('configurator')) {
+                    // Nodes that are not explicitly configurable are skipped
+                    continue;
+                }
+                self::nodeToField($node, $builder);
             }
+        }
+    }
+
+    private static function anyExposedParameter(PrototypeNodeInterface $node)
+    {
+        if ($node instanceof ArrayNode) {
+            foreach ($node->getChildren() as $subNode) {
+                if (self::anyExposedParameter($subNode)) {
+                    return true;
+                }
+            }
+        } else {
+            return ($node->getAttribute('configurator'));
         }
     }
 
@@ -100,7 +121,7 @@ class ConfiguratorType extends AbstractType
      * @param NodeInterface         $node
      * @param FormBuilderInterface  $builder
      */
-    protected function nodeToField(NodeInterface $node, FormBuilderInterface $builder)
+    private static function nodeToField(NodeInterface $node, FormBuilderInterface $builder)
     {
         $options = array(
             'required' => $node->isRequired(),
