@@ -42,10 +42,10 @@ class ConfiguratorController extends Controller
 
         $tree = $this->get('naoned_database_config.services.configuration')->getContainerConfigurationTree($bundles[$bundleName]);
         $extension = $extensionRepository->findOneBy(
-            array(
+            [
                 'name' => $tree->getName(),
                 'namespace' => $namespace,
-            )
+            ]
         );
 
         if (false == $extension) {
@@ -54,7 +54,7 @@ class ConfiguratorController extends Controller
             $extension->setNamespace($namespace);
         }
 
-        $form = $this->createForm(new ConfiguratorType(), $extension, array('tree' => $tree));
+        $form = $this->createForm(new ConfiguratorType(), $extension, ['tree' => $tree]);
 
         if ('POST' == $request->getMethod()) {
 
@@ -74,9 +74,9 @@ class ConfiguratorController extends Controller
 
         return $this->render(
             'NaonedDatabaseConfigBundle::edit.html.twig',
-            array(
+            [
                 'form' => $form->createView(),
-            )
+            ]
         );
     }
 

@@ -171,8 +171,6 @@ class ConfiguratorType extends AbstractType
         }
 
         $builder->add($field);
-
-
     }
 
     /**
