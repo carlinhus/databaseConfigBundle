@@ -1,6 +1,6 @@
 <?php
 
-namespace Naoned\DatabaseConfigBundle\Form;
+namespace Carlinhus\DatabaseConfigBundle\Form;
 
 use Symfony\Component\Form\FormBuilderInterface;
 

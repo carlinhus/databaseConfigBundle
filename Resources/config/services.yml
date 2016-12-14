@@ -1,11 +1,11 @@
 services:
-    naoned_database_config.repositories.extension:
+    Carlinhus_database_config.repositories.extension:
         class: Doctrine\ORM\EntityRepository
         factory_service: doctrine.orm.entity_manager
         factory_method: getRepository
         arguments:
-            - Naoned\DatabaseConfigBundle\Entity\Extension
+            - Carlinhus\DatabaseConfigBundle\Entity\Extension
 
-    naoned_database_config.services.configuration:
-        class: Naoned\DatabaseConfigBundle\Service\ConfigurationService
-        arguments: [ "@kernel", "@naoned_database_config.repositories.extension", "@logger" ]
+    Carlinhus_database_config.services.configuration:
+        class: Carlinhus\DatabaseConfigBundle\Service\ConfigurationService
+        arguments: [ "@kernel", "@Carlinhus_database_config.repositories.extension", "@logger" ]

@@ -1,13 +1,13 @@
 <?php
 
-namespace Naoned\DatabaseConfigBundle\Entity;
+namespace Carlinhus\DatabaseConfigBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /** ConfigRepository
  *
- * @package Naoned.DatabaseConfigBundle.Entity
+ * @package Carlinhus.DatabaseConfigBundle.Entity
  * @author  Guillaume Petit <guillaume.petit@sword-group.com>
  *
  */

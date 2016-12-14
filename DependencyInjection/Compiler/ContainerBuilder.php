@@ -1,6 +1,6 @@
 <?php
 
-namespace Naoned\DatabaseConfigBundle\DependencyInjection\Compiler;
+namespace Carlinhus\DatabaseConfigBundle\DependencyInjection\Compiler;
 
 use Doctrine\Bundle\DoctrineBundle\ConnectionFactory;
 use Doctrine\DBAL\Connection;
@@ -9,8 +9,8 @@ use Doctrine\DBAL\Query\QueryBuilder;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Bridge\ProxyManager\LazyProxy\Instantiator\RuntimeInstantiator;
 
-use Naoned\DatabaseConfigBundle\Entity\Config;
-use Naoned\DatabaseConfigBundle\Entity\Extension;
+use Carlinhus\DatabaseConfigBundle\Entity\Config;
+use Carlinhus\DatabaseConfigBundle\Entity\Extension;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder as BaseContainerBuilder;
 

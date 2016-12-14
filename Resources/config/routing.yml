@@ -1,12 +1,12 @@
 # Configurator
-naoned_configurator:
+Carlinhus_configurator:
     pattern:  /configurator
-    defaults: { _controller: "NaonedDatabaseConfigBundle:Configurator:index" }
+    defaults: { _controller: "CarlinhusDatabaseConfigBundle:Configurator:index" }
     options: { do_not_remove: true }
 
-naoned_configurator_edit:
+Carlinhus_configurator_edit:
     pattern:  /configurator/{bundleName}/{namespace}
     defaults:
-      _controller: "NaonedDatabaseConfigBundle:Configurator:edit"
+      _controller: "CarlinhusDatabaseConfigBundle:Configurator:edit"
       namespace: ''
     options: { do_not_remove: true }

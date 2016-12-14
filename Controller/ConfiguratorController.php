@@ -1,6 +1,6 @@
 <?php
 
-namespace Naoned\DatabaseConfigBundle\Controller;
+namespace Carlinhus\DatabaseConfigBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Config\Definition\ArrayNode;
@@ -10,13 +10,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 
-use Naoned\DatabaseConfigBundle\Entity\Extension;
-use Naoned\DatabaseConfigBundle\Form\ConfiguratorType;
+use Carlinhus\DatabaseConfigBundle\Entity\Extension;
+use Carlinhus\DatabaseConfigBundle\Form\ConfiguratorType;
 
 /**
  * Configurator Controller
  *
- * @package Naoned.DatabaseConfigBundle.Controller
+ * @package Carlinhus.DatabaseConfigBundle.Controller
  *
  * @author  Guillaume Petit <guillaume.petit@sword-group.com>
  */
@@ -34,13 +34,13 @@ class ConfiguratorController extends Controller
      */
     public function editAction(Request $request, $bundleName, $namespace = '')
     {
-        $extensionRepository = $this->getDoctrine()->getRepository('NaonedDatabaseConfigBundle:Extension');
-        $configRepository = $this->getDoctrine()->getRepository('NaonedDatabaseConfigBundle:Config');
+        $extensionRepository = $this->getDoctrine()->getRepository('CarlinhusDatabaseConfigBundle:Extension');
+        $configRepository = $this->getDoctrine()->getRepository('CarlinhusDatabaseConfigBundle:Config');
 
         $manager = $this->getDoctrine()->getManager();
         $bundles = $this->get('kernel')->getBundles();
 
-        $tree = $this->get('naoned_database_config.services.configuration')->getContainerConfigurationTree($bundles[$bundleName]);
+        $tree = $this->get('Carlinhus_database_config.services.configuration')->getContainerConfigurationTree($bundles[$bundleName]);
         $extension = $extensionRepository->findOneBy(
             [
                 'name' => $tree->getName(),
@@ -73,7 +73,7 @@ class ConfiguratorController extends Controller
         }
 
         return $this->render(
-            'NaonedDatabaseConfigBundle::edit.html.twig',
+            'CarlinhusDatabaseConfigBundle::edit.html.twig',
             [
                 'form' => $form->createView(),
             ]

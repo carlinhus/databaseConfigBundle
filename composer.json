@@ -1,9 +1,9 @@
 {
-    "name": "naoned/databaseConfigBundle",
+    "name": "Carlinhus/databaseConfigBundle",
     "type": "symfony-bundle",
     "description": "Allows management of Symfony's container configuration from the database",
-    "keywords": ["naoned", "symfony", "database", "container", "config"],
-    "homepage": "https://github.com/naoned/databaseConfigBundle",
+    "keywords": ["Carlinhus", "symfony", "database", "container", "config"],
+    "homepage": "https://github.com/Carlinhus/databaseConfigBundle",
     "license": "MIT",
     "authors": [
         {
@@ -24,14 +24,14 @@
         },
         {
             "name": "Vincent Beauvivre",
-            "email": "vbeauvivre@naoned.fr"
+            "email": "vbeauvivre@Carlinhus.fr"
         }
     ],
     "require": {
         "symfony/symfony": "~2.1 | ^3.0"
     },
     "autoload": {
-        "psr-0": { "Naoned\\DatabaseConfigBundle\\": "" }
+        "psr-0": { "Carlinhus\\DatabaseConfigBundle\\": "" }
     },
-    "target-dir": "Naoned/DatabaseConfigBundle"
+    "target-dir": "Carlinhus/DatabaseConfigBundle"
 }

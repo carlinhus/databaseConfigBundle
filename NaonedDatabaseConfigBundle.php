@@ -1,9 +1,9 @@
 <?php
 
-namespace Naoned\DatabaseConfigBundle;
+namespace Carlinhus\DatabaseConfigBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class NaonedDatabaseConfigBundle extends Bundle
+class CarlinhusDatabaseConfigBundle extends Bundle
 {
 }

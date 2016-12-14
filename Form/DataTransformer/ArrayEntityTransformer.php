@@ -1,12 +1,12 @@
 <?php
 
-namespace Naoned\DatabaseConfigBundle\Form\DataTransformer;
+namespace Carlinhus\DatabaseConfigBundle\Form\DataTransformer;
 
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Form\DataTransformerInterface;
 
-use Naoned\DatabaseConfigBundle\Entity\Config;
-use Naoned\DatabaseConfigBundle\Entity\Extension;
+use Carlinhus\DatabaseConfigBundle\Entity\Config;
+use Carlinhus\DatabaseConfigBundle\Entity\Extension;
 
 class ArrayEntityTransformer implements DataTransformerInterface
 {

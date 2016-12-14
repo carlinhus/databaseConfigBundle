@@ -1,8 +1,8 @@
 <?php
-namespace Naoned\DatabaseConfigBundle\Service;
+namespace Carlinhus\DatabaseConfigBundle\Service;
 
-use Naoned\DatabaseConfigBundle\Entity\ExtensionRepository;
-use Naoned\DatabaseConfigBundle\Entity\Config;
+use Carlinhus\DatabaseConfigBundle\Entity\ExtensionRepository;
+use Carlinhus\DatabaseConfigBundle\Entity\Config;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\Definition\NodeInterface;

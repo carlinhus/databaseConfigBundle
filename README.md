@@ -1,12 +1,12 @@
 
-NaonedDatabaseConfigBundle
+CarlinhusDatabaseConfigBundle
 ==========================
 
 **Attention!** This bundle was previously know as FlexyDatabaseConfigBundle. Make sure to update your composer.json project file to reflect the name change.
 
 ---
 
-NaonedDatabaseConfigBundle allows you to store configurations from the configuration tree of a bundle and parameters in a database table. Those configurations and parameters will override those defined in the ```app/config/config.yml``` and ```app/config/parameters.yml``` files.
+CarlinhusDatabaseConfigBundle allows you to store configurations from the configuration tree of a bundle and parameters in a database table. Those configurations and parameters will override those defined in the ```app/config/config.yml``` and ```app/config/parameters.yml``` files.
 
 Configurations are all cached using Symfony's container caching mechanism and do not hit the database.
 
@@ -19,7 +19,7 @@ Configurations are all cached using Symfony's container caching mechanism and do
 1. Add this to your composer.json :
 ```js
     "require": {
-        "naoned/database-config-bundle": "dev-master"
+        "Carlinhus/database-config-bundle": "dev-master"
     }
 ```
 
@@ -32,13 +32,13 @@ composer update
 ```php
 public function registerBundles()
 {
-        new Naoned\DatabaseConfigBundle\NaonedDatabaseConfigBundle(),
+        new Carlinhus\DatabaseConfigBundle\CarlinhusDatabaseConfigBundle(),
 }
 ```
 
 4. Extend the getContainerBuilder() method in AppKernel.php :
 ```php
-use Naoned\DatabaseConfigBundle\DependencyInjection\Compiler\ContainerBuilder;
+use Carlinhus\DatabaseConfigBundle\DependencyInjection\Compiler\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 ...
 protected function getContainerBuilder()
@@ -55,7 +55,7 @@ app/console doctrine:schema:update --force
 ## How to use
 
 ### Add a configuration to the database
-NaonedDatabaseConfigBundle reproduces the configuration tree of a bundle in the database table named ```container_config```. If you want to add a configuration in the database table, you have to first add the extension name in the ```container_extension``` table. After that, you will have to add each parent node of the configuration tree that leads to the configuration you have to override.
+CarlinhusDatabaseConfigBundle reproduces the configuration tree of a bundle in the database table named ```container_config```. If you want to add a configuration in the database table, you have to first add the extension name in the ```container_extension``` table. After that, you will have to add each parent node of the configuration tree that leads to the configuration you have to override.
 
 For example, if you have the following configuration and you want to override ```project_title``` :
 

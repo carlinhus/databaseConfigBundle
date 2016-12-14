@@ -1,6 +1,6 @@
 <?php
 
-namespace Naoned\DatabaseConfigBundle\Form;
+namespace Carlinhus\DatabaseConfigBundle\Form;
 
 use Symfony\Component\Config\Definition\ArrayNode;
 use Symfony\Component\Config\Definition\BooleanNode;
@@ -18,8 +18,8 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Config\Definition\PrototypeNodeInterface;
 
-use Naoned\DatabaseConfigBundle\Form\DataTransformer\ArrayEntityTransformer;
-use Naoned\DatabaseConfigBundle\Form\DataTransformer\BooleanTransformer;
+use Carlinhus\DatabaseConfigBundle\Form\DataTransformer\ArrayEntityTransformer;
+use Carlinhus\DatabaseConfigBundle\Form\DataTransformer\BooleanTransformer;
 
 /**
  * This is only a PARTIAL and EXPERIMENTAL implementation of all the features available in the Symfony configuration tree.
