@@ -1,13 +1,13 @@
 <?php
 
-namespace Carlinhus\DatabaseConfigBundle\Entity;
+namespace carlinhus\DatabaseConfigBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /** ConfigRepository
  *
- * @package Carlinhus.DatabaseConfigBundle.Entity
+ * @package carlinhus.DatabaseConfigBundle.Entity
  * @author  Guillaume Petit <guillaume.petit@sword-group.com>
  *
  */

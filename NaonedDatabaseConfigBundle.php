@@ -1,9 +1,9 @@
 <?php
 
-namespace Carlinhus\DatabaseConfigBundle;
+namespace carlinhus\DatabaseConfigBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class CarlinhusDatabaseConfigBundle extends Bundle
+class carlinhusDatabaseConfigBundle extends Bundle
 {
 }

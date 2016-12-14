@@ -1,9 +1,9 @@
 {
-    "name": "Carlinhus/databaseConfigBundle",
+    "name": "carlinhus/databaseConfigBundle",
     "type": "symfony-bundle",
     "description": "Allows management of Symfony's container configuration from the database",
-    "keywords": ["Carlinhus", "symfony", "database", "container", "config"],
-    "homepage": "https://github.com/Carlinhus/databaseConfigBundle",
+    "keywords": ["carlinhus", "symfony", "database", "container", "config"],
+    "homepage": "https://github.com/carlinhus/databaseConfigBundle",
     "license": "MIT",
     "authors": [
         {
@@ -24,16 +24,16 @@
         },
         {
             "name": "Vincent Beauvivre",
-            "email": "vbeauvivre@Carlinhus.fr"
+            "email": "vbeauvivre@carlinhus.fr"
         }
     ],
     "require": {
         "symfony/symfony": "~2.1 | ^3.0"
     },
     "autoload": {
-        "psr-0": { "Carlinhus\\DatabaseConfigBundle\\": "" }
+        "psr-0": { "carlinhus\\DatabaseConfigBundle\\": "" }
     },
-    "target-dir": "Carlinhus/DatabaseConfigBundle",
+    "target-dir": "carlinhus/DatabaseConfigBundle",
     "extra": {
         "branch-alias": {
             "dev-master": "1.0.0"

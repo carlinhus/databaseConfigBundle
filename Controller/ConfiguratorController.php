@@ -1,6 +1,6 @@
 <?php
 
-namespace Carlinhus\DatabaseConfigBundle\Controller;
+namespace carlinhus\DatabaseConfigBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Config\Definition\ArrayNode;
@@ -10,13 +10,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 
-use Carlinhus\DatabaseConfigBundle\Entity\Extension;
-use Carlinhus\DatabaseConfigBundle\Form\ConfiguratorType;
+use carlinhus\DatabaseConfigBundle\Entity\Extension;
+use carlinhus\DatabaseConfigBundle\Form\ConfiguratorType;
 
 /**
  * Configurator Controller
  *
- * @package Carlinhus.DatabaseConfigBundle.Controller
+ * @package carlinhus.DatabaseConfigBundle.Controller
  *
  * @author  Guillaume Petit <guillaume.petit@sword-group.com>
  */
@@ -34,13 +34,13 @@ class ConfiguratorController extends Controller
      */
     public function editAction(Request $request, $bundleName, $namespace = '')
     {
-        $extensionRepository = $this->getDoctrine()->getRepository('CarlinhusDatabaseConfigBundle:Extension');
-        $configRepository = $this->getDoctrine()->getRepository('CarlinhusDatabaseConfigBundle:Config');
+        $extensionRepository = $this->getDoctrine()->getRepository('carlinhusDatabaseConfigBundle:Extension');
+        $configRepository = $this->getDoctrine()->getRepository('carlinhusDatabaseConfigBundle:Config');
 
         $manager = $this->getDoctrine()->getManager();
         $bundles = $this->get('kernel')->getBundles();
 
-        $tree = $this->get('Carlinhus_database_config.services.configuration')->getContainerConfigurationTree($bundles[$bundleName]);
+        $tree = $this->get('carlinhus_database_config.services.configuration')->getContainerConfigurationTree($bundles[$bundleName]);
         $extension = $extensionRepository->findOneBy(
             [
                 'name' => $tree->getName(),
@@ -73,7 +73,7 @@ class ConfiguratorController extends Controller
         }
 
         return $this->render(
-            'CarlinhusDatabaseConfigBundle::edit.html.twig',
+            'carlinhusDatabaseConfigBundle::edit.html.twig',
             [
                 'form' => $form->createView(),
             ]

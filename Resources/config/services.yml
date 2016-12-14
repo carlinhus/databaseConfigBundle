@@ -1,11 +1,11 @@
 services:
-    Carlinhus_database_config.repositories.extension:
+    carlinhus_database_config.repositories.extension:
         class: Doctrine\ORM\EntityRepository
         factory_service: doctrine.orm.entity_manager
         factory_method: getRepository
         arguments:
-            - Carlinhus\DatabaseConfigBundle\Entity\Extension
+            - carlinhus\DatabaseConfigBundle\Entity\Extension
 
-    Carlinhus_database_config.services.configuration:
-        class: Carlinhus\DatabaseConfigBundle\Service\ConfigurationService
-        arguments: [ "@kernel", "@Carlinhus_database_config.repositories.extension", "@logger" ]
+    carlinhus_database_config.services.configuration:
+        class: carlinhus\DatabaseConfigBundle\Service\ConfigurationService
+        arguments: [ "@kernel", "@carlinhus_database_config.repositories.extension", "@logger" ]

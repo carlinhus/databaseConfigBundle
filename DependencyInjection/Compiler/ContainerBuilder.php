@@ -1,6 +1,6 @@
 <?php
 
-namespace Carlinhus\DatabaseConfigBundle\DependencyInjection\Compiler;
+namespace carlinhus\DatabaseConfigBundle\DependencyInjection\Compiler;
 
 use Doctrine\Bundle\DoctrineBundle\ConnectionFactory;
 use Doctrine\DBAL\Connection;
@@ -9,8 +9,8 @@ use Doctrine\DBAL\Query\QueryBuilder;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Bridge\ProxyManager\LazyProxy\Instantiator\RuntimeInstantiator;
 
-use Carlinhus\DatabaseConfigBundle\Entity\Config;
-use Carlinhus\DatabaseConfigBundle\Entity\Extension;
+use carlinhus\DatabaseConfigBundle\Entity\Config;
+use carlinhus\DatabaseConfigBundle\Entity\Extension;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder as BaseContainerBuilder;
 

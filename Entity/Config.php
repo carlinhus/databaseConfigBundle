@@ -1,13 +1,13 @@
 <?php
 
-namespace Carlinhus\DatabaseConfigBundle\Entity;
+namespace carlinhus\DatabaseConfigBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  *
  * @ORM\Table(name="container_config")
- * @ORM\Entity(repositoryClass="Carlinhus\DatabaseConfigBundle\Entity\ConfigRepository")
+ * @ORM\Entity(repositoryClass="carlinhus\DatabaseConfigBundle\Entity\ConfigRepository")
  */
 class Config
 {
@@ -39,22 +39,22 @@ class Config
      * @var \Doctrine\Common\Collections\Collection
      *
      * Bidirectional - One-To-Many (INVERSE SIDE)
-     * @ORM\OneToMany(targetEntity="Carlinhus\DatabaseConfigBundle\Entity\Config", mappedBy="parent", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="carlinhus\DatabaseConfigBundle\Entity\Config", mappedBy="parent", cascade={"remove"})
      */
     private $children;
 
     /**
-     * @var \Carlinhus\DatabaseConfigBundle\Entity\Config
+     * @var \carlinhus\DatabaseConfigBundle\Entity\Config
      *
-     * @ORM\ManyToOne(targetEntity="Carlinhus\DatabaseConfigBundle\Entity\Config", inversedBy="children")
+     * @ORM\ManyToOne(targetEntity="carlinhus\DatabaseConfigBundle\Entity\Config", inversedBy="children")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $parent;
 
     /**
-     * @var \Carlinhus\DatabaseConfigBundle\Entity\Extension
+     * @var \carlinhus\DatabaseConfigBundle\Entity\Extension
      *
-     * @ORM\ManyToOne(targetEntity="Carlinhus\DatabaseConfigBundle\Entity\Extension", inversedBy="configs")
+     * @ORM\ManyToOne(targetEntity="carlinhus\DatabaseConfigBundle\Entity\Extension", inversedBy="configs")
      * @ORM\JoinColumn(name="extension_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $extension;
@@ -126,10 +126,10 @@ class Config
     /**
      * Add children
      *
-     * @param \Carlinhus\DatabaseConfigBundle\Entity\Config $children the child to add
+     * @param \carlinhus\DatabaseConfigBundle\Entity\Config $children the child to add
      * @return Config
      */
-    public function addChildren(\Carlinhus\DatabaseConfigBundle\Entity\Config $children)
+    public function addChildren(\carlinhus\DatabaseConfigBundle\Entity\Config $children)
     {
         $this->children[] = $children;
 
@@ -139,11 +139,11 @@ class Config
     /**
      * Remove children
      *
-     * @param \Carlinhus\DatabaseConfigBundle\Entity\Config $children the child to remove
+     * @param \carlinhus\DatabaseConfigBundle\Entity\Config $children the child to remove
      *
      * @return void
      */
-    public function removeChildren(\Carlinhus\DatabaseConfigBundle\Entity\Config $children)
+    public function removeChildren(\carlinhus\DatabaseConfigBundle\Entity\Config $children)
     {
         $this->children->removeElement($children);
     }
@@ -161,10 +161,10 @@ class Config
     /**
      * Set parent
      *
-     * @param \Carlinhus\DatabaseConfigBundle\Entity\Config $parent the parent to set
+     * @param \carlinhus\DatabaseConfigBundle\Entity\Config $parent the parent to set
      * @return Config
      */
-    public function setParent(\Carlinhus\DatabaseConfigBundle\Entity\Config $parent = null)
+    public function setParent(\carlinhus\DatabaseConfigBundle\Entity\Config $parent = null)
     {
         $this->parent = $parent;
 
@@ -174,7 +174,7 @@ class Config
     /**
      * Get parent
      *
-     * @return \Carlinhus\DatabaseConfigBundle\Entity\Config
+     * @return \carlinhus\DatabaseConfigBundle\Entity\Config
      */
     public function getParent()
     {
@@ -184,10 +184,10 @@ class Config
     /**
      * Set extension
      *
-     * @param \Carlinhus\DatabaseConfigBundle\Entity\Extension $extension the extension to set
+     * @param \carlinhus\DatabaseConfigBundle\Entity\Extension $extension the extension to set
      * @return Config
      */
-    public function setExtension(\Carlinhus\DatabaseConfigBundle\Entity\Extension $extension = null)
+    public function setExtension(\carlinhus\DatabaseConfigBundle\Entity\Extension $extension = null)
     {
         $this->extension = $extension;
 
@@ -197,7 +197,7 @@ class Config
     /**
      * Get extension
      *
-     * @return \Carlinhus\DatabaseConfigBundle\Entity\Extension
+     * @return \carlinhus\DatabaseConfigBundle\Entity\Extension
      */
     public function getExtension()
     {

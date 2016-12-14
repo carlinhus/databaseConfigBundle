@@ -1,6 +1,6 @@
 <?php
 
-namespace Carlinhus\DatabaseConfigBundle\Entity;
+namespace carlinhus\DatabaseConfigBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Extension entity
  *
  * @ORM\Table(name="container_extension")
- * @ORM\Entity(repositoryClass="Carlinhus\DatabaseConfigBundle\Entity\ExtensionRepository")
+ * @ORM\Entity(repositoryClass="carlinhus\DatabaseConfigBundle\Entity\ExtensionRepository")
  */
 class Extension
 {
@@ -34,7 +34,7 @@ class Extension
     private $namespace;
 
    /**
-     * @ORM\OneToMany(targetEntity="Carlinhus\DatabaseConfigBundle\Entity\Config", mappedBy="extension", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="carlinhus\DatabaseConfigBundle\Entity\Config", mappedBy="extension", cascade={"persist", "remove"}, orphanRemoval=true)
      * @var \Doctrine\Common\Collections\Collection
      */
     private $configs;
@@ -85,10 +85,10 @@ class Extension
     /**
      * Add configs
      *
-     * @param \Carlinhus\DatabaseConfigBundle\Entity\Config $config the root configuration node attached to the extension
+     * @param \carlinhus\DatabaseConfigBundle\Entity\Config $config the root configuration node attached to the extension
      * @return Extension
      */
-    public function addConfig(\Carlinhus\DatabaseConfigBundle\Entity\Config $config)
+    public function addConfig(\carlinhus\DatabaseConfigBundle\Entity\Config $config)
     {
         $config->setExtension($this);
 
@@ -100,11 +100,11 @@ class Extension
     /**
      * Remove configs
      *
-     * @param \Carlinhus\DatabaseConfigBundle\Entity\Config $configs the root node of the configuration to remove
+     * @param \carlinhus\DatabaseConfigBundle\Entity\Config $configs the root node of the configuration to remove
      *
      * @return void
      */
-    public function removeConfig(\Carlinhus\DatabaseConfigBundle\Entity\Config $configs)
+    public function removeConfig(\carlinhus\DatabaseConfigBundle\Entity\Config $configs)
     {
         $this->configs->removeElement($configs);
     }
