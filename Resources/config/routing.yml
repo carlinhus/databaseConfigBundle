@@ -1,12 +1,12 @@
 # Configurator
-carlinhus_configurator:
+Carlinhus_configurator:
     pattern:  /configurator
-    defaults: { _controller: "carlinhusDatabaseConfigBundle:Configurator:index" }
+    defaults: { _controller: "CarlinhusDatabaseConfigBundle:Configurator:index" }
     options: { do_not_remove: true }
 
-carlinhus_configurator_edit:
+Carlinhus_configurator_edit:
     pattern:  /configurator/{bundleName}/{namespace}
     defaults:
-      _controller: "carlinhusDatabaseConfigBundle:Configurator:edit"
+      _controller: "CarlinhusDatabaseConfigBundle:Configurator:edit"
       namespace: ''
     options: { do_not_remove: true }

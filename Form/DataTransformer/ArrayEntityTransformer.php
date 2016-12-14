@@ -1,12 +1,12 @@
 <?php
 
-namespace carlinhus\DatabaseConfigBundle\Form\DataTransformer;
+namespace Carlinhus\DatabaseConfigBundle\Form\DataTransformer;
 
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Form\DataTransformerInterface;
 
-use carlinhus\DatabaseConfigBundle\Entity\Config;
-use carlinhus\DatabaseConfigBundle\Entity\Extension;
+use Carlinhus\DatabaseConfigBundle\Entity\Config;
+use Carlinhus\DatabaseConfigBundle\Entity\Extension;
 
 class ArrayEntityTransformer implements DataTransformerInterface
 {

@@ -1,8 +1,8 @@
 <?php
-namespace carlinhus\DatabaseConfigBundle\Service;
+namespace Carlinhus\DatabaseConfigBundle\Service;
 
-use carlinhus\DatabaseConfigBundle\Entity\ExtensionRepository;
-use carlinhus\DatabaseConfigBundle\Entity\Config;
+use Carlinhus\DatabaseConfigBundle\Entity\ExtensionRepository;
+use Carlinhus\DatabaseConfigBundle\Entity\Config;
 use Symfony\Component\HttpKernel\Bundle\BundleInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\Definition\NodeInterface;

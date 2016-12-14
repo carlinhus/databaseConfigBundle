@@ -1,5 +1,5 @@
 <?php
-namespace carlinhus\DatabaseConfigBundle\Form\DataTransformer;
+namespace Carlinhus\DatabaseConfigBundle\Form\DataTransformer;
 use Symfony\Component\Form\DataTransformerInterface;
 
 /**

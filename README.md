@@ -32,13 +32,13 @@ composer update
 ```php
 public function registerBundles()
 {
-        new carlinhus\DatabaseConfigBundle\carlinhusDatabaseConfigBundle(),
+        new Carlinhus\DatabaseConfigBundle\CarlinhusDatabaseConfigBundle(),
 }
 ```
 
 4. Extend the getContainerBuilder() method in AppKernel.php :
 ```php
-use carlinhus\DatabaseConfigBundle\DependencyInjection\Compiler\ContainerBuilder;
+use Carlinhus\DatabaseConfigBundle\DependencyInjection\Compiler\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 ...
 protected function getContainerBuilder()
