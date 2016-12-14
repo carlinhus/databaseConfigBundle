@@ -1,5 +1,5 @@
 {
-    "name": "carlinhus/databaseConfigBundle",
+    "name": "carlinhus/database-config-bundle",
     "type": "symfony-bundle",
     "description": "Allows management of Symfony's container configuration from the database",
     "keywords": ["carlinhus", "symfony", "database", "container", "config"],
